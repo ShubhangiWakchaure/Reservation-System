@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>View Bookings</title>
+  <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="bg-white text-black p-4 flex justify-between items-center shadow-md">
+    <div style="display: flex; align-items: center;">
+            <img src="/images/logo.png.png" alt="Logo" style="height: 80px; margin-right: 10px;">
+            <h1  class="text-4xl font-bold"><span style="color: #F97316;">Maha</span><span style="color: #1E3A8A;">Yatra</span>
+            <span class="text-gray-700" style="font-size: 2.0rem; margin-left: 8px;">Admin</span></h1>
+        </div>
+   <div class="flex space-x-4">
+  <a href="/admin" 
+     class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+    Dashboard
+  </a>
+  <a href="/logout" 
+     class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition">
+    Logout
+  </a>
+</div>
+
+  </nav>
+
+  <!-- Content -->
+  <div class="max-w-6xl mx-auto p-8">
+    <h2 class="text-2xl font-bold text-blue-700 mb-6">All Bookings</h2>
+
+    <table class="w-full bg-white rounded shadow">
+      <thead class="bg-blue-600 text-white">
+        <tr>
+          <th class="p-2 text-left">Booking ID</th>
+          <th class="p-2 text-left">User</th>
+          <th class="p-2 text-left">Route</th>
+          <th class="p-2 text-left">Mode</th>
+          <th class="p-2 text-left">Name</th>
+          <th class="p-2 text-left">Date</th>
+          <th class="p-2 text-left">Seats</th>
+          <th class="p-2 text-left">Total Fare (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="booking : ${bookings}" class="border-t hover:bg-gray-50">
+          <td class="p-2" th:text="${booking.id}"></td>
+          <td class="p-2" th:text="${booking.user.username}"></td>
+          <td class="p-2" th:text="${booking.route.sourceCity.name + ' → ' + booking.route.destinationCity.name}"></td>
+          <td class="p-2" th:text="${booking.mode}"></td>
+          <td class="p-2" th:text="${booking.travelName}"></td>
+          <td class="p-2" th:text="${booking.travelDate}"></td>
+          <td class="p-2" th:text="${booking.seatCount}"></td>
+          <td class="p-2" th:text="${booking.totalFare}"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

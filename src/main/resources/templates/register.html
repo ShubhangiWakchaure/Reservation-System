@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Register</title>
+  <link href="./css/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="bg-white p-10 rounded-2xl shadow-md w-96">
+    <h2 class="text-2xl font-bold mb-5 text-center">Register</h2>
+
+    <div th:if="${error}" class="text-red-600 text-sm mb-3" th:text="${error}"></div>
+    <div th:if="${success}" class="text-green-600 text-sm mb-3" th:text="${success}"></div>
+
+   <form th:action="@{/register}" th:object="${user}" method="post" class="space-y-4">
+
+  <!-- Username -->
+  <label for="username" class="block text-gray-700">Username</label>
+  <input type="text" th:field="*{username}" id="username" placeholder="Username" required class="w-full border p-2 rounded" />
+
+  <!-- Password -->
+  <label for="password" class="block text-gray-700">Password</label>
+  <input type="password" th:field="*{password}" id="password" placeholder="Password" required class="w-full border p-2 rounded" />
+
+  <!-- Date of Birth -->
+  <label for="dob" class="block text-gray-700">Date of Birth</label>
+  <input type="date" th:field="*{dob}" id="dob" placeholder="Date of Birth" required class="w-full border p-2 rounded" />
+
+  <!-- Role -->
+  <label for="role" class="block text-gray-700">Role</label>
+  <select th:field="*{role}" id="role" class="w-full border p-2 rounded">
+    <option value="USER" selected>User</option>
+    <option value="ADMIN">Admin</option>
+  </select>
+
+  <!-- Created At -->
+  <label for="createdAt" class="block text-gray-700">Created At</label>
+  <input type="datetime-local" th:field="*{createdAt}" id="createdAt" class="w-full border p-2 rounded" />
+
+  <!-- Submit -->
+  <button type="submit" class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded w-full">Register</button>
+
+</form>
+
+    <p class="text-sm mt-4 text-center">
+      Already have an account? <a href="/login" class="text-blue-600 font-medium">Login</a>
+    </p>
+  </div>
+</body>
+</html>

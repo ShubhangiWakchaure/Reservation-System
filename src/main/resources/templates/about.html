@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>About MahaYatra</title>
+  <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- 🔷 Header -->
+ <div style="background-color: 	#F3F0FF; color: white; padding: 0rem; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+            <img src="/images/logo.png.png" alt="Logo" style="height: 80px; margin-right: 10px;">
+            <h1  class="text-4xl font-bold"><span style="color: #F97316;">Maha</span><span style="color: #1E3A8A;">Yatra</span></h1>
+        </div>
+        <div class="flex items-center gap-6">
+        <a href="/" class="flex items-center gap-1  text-gray-800 hover:text-blue-600 font-medium ">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"class="w-5 h-5 fill-current text-blue-600"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+          <path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+        </svg>Home
+        </a>
+    <a th:href="@{/account}" class="flex items-center gap-1 text-gray-800 hover:text-blue-600 font-medium mr-4">
+      <svg class="w-5 h-5 fill-current text-blue-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/>
+      </svg>
+      Account
+    </a>
+  </div>
+</div>
+
+  <!-- 🛤️ Our Journey -->
+  <section class="max-w-5xl mx-auto mt-12 px-6">
+    <div class="bg-white p-8 rounded-xl shadow-md">
+      <h2 class="text-3xl font-bold text-indigo-700 mb-4">Our Journey</h2>
+      <p class="text-gray-700 mb-2">
+        Founded in 2025, <strong>MahaYatra</strong> began with a vision to bring Maharashtra closer together. From bustling Mumbai to serene Konkan, we help travelers book bus and train tickets with ease, transparency, and reliability.
+      </p>
+      <p class="text-gray-600">
+        With a user-first design, real-time availability, and unbeatable offers, we’ve empowered thousands to travel confidently every day.
+      </p>
+    </div>
+  </section>
+
+  <!-- 🎯 Mission & Values -->
+  <section class="max-w-5xl mx-auto mt-12 px-6">
+    <div class="bg-white p-8 rounded-xl shadow-md text-center">
+      <h2 class="text-3xl font-bold text-indigo-700 mb-4">Our Mission & Values</h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        At MahaYatra, we believe in delivering more than just tickets — we deliver trust, convenience, and smiles.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <div class="bg-indigo-50 p-6 rounded-lg">
+          <img src="/images/fast.png" alt="Fast Booking" class="w-16 mx-auto mb-4">
+          <h3 class="font-semibold text-lg text-indigo-800">Instant Booking</h3>
+          <p class="text-sm text-gray-700 mt-2">Book tickets within seconds with real-time availability.</p>
+        </div>
+        <div class="bg-indigo-50 p-6 rounded-lg">
+          <img src="/images/secure.png" alt="Secure Payments" class="w-16 mx-auto mb-4">
+          <h3 class="font-semibold text-lg text-indigo-800">Secure Payments</h3>
+          <p class="text-sm text-gray-700 mt-2">Multiple payment options with end-to-end encryption.</p>
+        </div>
+        <div class="bg-indigo-50 p-6 rounded-lg">
+          <img src="/images/support.png" alt="Support" class="w-16 mx-auto mb-4">
+          <h3 class="font-semibold text-lg text-indigo-800">24/7 Support</h3>
+          <p class="text-sm text-gray-700 mt-2">Dedicated customer support to assist you anytime.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 👥 Meet the Team -->
+  <section class="max-w-5xl mx-auto mt-12 px-6 mb-16">
+    <div class="bg-white p-8 rounded-xl shadow-md text-center">
+      <h2 class="text-3xl font-bold text-indigo-700 mb-4">Meet the Team</h2>
+      <p class="text-gray-600 max-w-xl mx-auto mb-8">People behind the vision of seamless travel in Maharashtra.</p>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-4 rounded-lg bg-indigo-50">
+          <h3 class="text-lg font-semibold text-indigo-800">Shubhangi Wakchaure</h3>
+          <p class="text-sm text-gray-600">Founder & CEO</p>
+        </div>
+        <div class="p-4 rounded-lg bg-indigo-50">
+          <h3 class="text-lg font-semibold text-indigo-800">Rahul Deshmukh</h3>
+          <p class="text-sm text-gray-600">Chief Technology Officer</p>
+        </div>
+        <div class="p-4 rounded-lg bg-indigo-50">
+          <h3 class="text-lg font-semibold text-indigo-800">Sneha More</h3>
+          <p class="text-sm text-gray-600">Head of Operations</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+<!-- 🚀 CTA -->
+<section class="bg-gradient-to-r from-indigo-700 to-purple-800 text-white py-16 text-center mt-10">
+  <h2 class="text-3xl font-bold mb-4">Join Thousands of Happy Travelers</h2>
+  <p class="mb-6 text-lg">Ready to explore Maharashtra? Start your MahaYatra today.</p>
+  <a href="/search" class="bg-white text-indigo-700 px-6 py-3 rounded font-semibold hover:bg-gray-100 transition">
+    Book Now
+  </a>
+</section>
+
+
+</section>
+<footer class="bg-[#f4f1ff] text-gray-700 py-8 px-6 mt-12">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <!-- Column 1: Brand -->
+    <div>
+      <div class="flex items-center gap-2 mb-2">
+        <img src="/images/logo.png.png" alt="MahaYatra" class="w-10 h-10">
+        <h2 class="text-xl font-bold"><span class="text-orange-500">Maha</span><span class="text-blue-800">Yatra</span></h2>
+      </div>
+      <p class="text-sm text-gray-600">Book train and bus tickets easily with MahaYatra. Travel made simple and secure.</p>
+    </div>
+
+    <!-- Column 2: Quick Links -->
+    <div>
+      <h3 class="text-md font-semibold mb-2">Quick Links</h3>
+      <ul class="space-y-1 text-sm">
+        <li><a href="/bookings" class="hover:underline">Bookings</a></li>
+        <li><a href="/account" class="hover:underline">Account</a></li>
+        <li><a href="/login" class="hover:underline">Login</a></li>
+        <li><a href="/contact" class="hover:underline">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Column 3: Contact Info -->
+    <div>
+      <h3 class="text-md font-semibold mb-2">Contact</h3>
+      <p class="text-sm">Email: support@mahayatra.in</p>
+      <p class="text-sm">Phone: +91 98765 43210</p>
+      <p class="text-sm">Address: Pune, Maharashtra, India</p>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="text-center text-sm text-gray-500 mt-8 border-t pt-4">
+    &copy; 2025 MahaYatra. All rights reserved.
+  </div>
+</footer>
+</section>
+
+</body>
+</html>

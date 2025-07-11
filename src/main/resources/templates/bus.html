@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Buses - MahaYatra</title>
+    <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- 🔷 Main Section -->
+<div class="max-w-7xl mx-auto px-4 py-6 grid grid-cols-1 md:grid-cols-4 gap-6">
+
+    <!-- 🧩 Left Panel - Filters -->
+    <div class="bg-white p-4 rounded shadow-md col-span-1">
+        <h2 class="text-xl font-bold mb-4">Filters</h2>
+
+        <!-- Bus Type -->
+        <div class="mb-4">
+            <h3 class="font-semibold text-gray-700 mb-1">Bus Type</h3>
+            <label><input type="checkbox" class="mr-2">AC</label><br>
+            <label><input type="checkbox" class="mr-2">Non-AC</label>
+        </div>
+
+        <!-- Departure Time -->
+        <div class="mb-4">
+            <h3 class="font-semibold text-gray-700 mb-1">Departure Time</h3>
+            <label><input type="checkbox" class="mr-2">Before 6 AM</label><br>
+            <label><input type="checkbox" class="mr-2">6 AM - 12 PM</label><br>
+            <label><input type="checkbox" class="mr-2">12 PM - 6 PM</label><br>
+            <label><input type="checkbox" class="mr-2">After 6 PM</label>
+        </div>
+
+        <!-- Arrival Time -->
+        <div class="mb-4">
+            <h3 class="font-semibold text-gray-700 mb-1">Arrival Time</h3>
+            <label><input type="checkbox" class="mr-2">Morning</label><br>
+            <label><input type="checkbox" class="mr-2">Afternoon</label><br>
+            <label><input type="checkbox" class="mr-2">Evening</label><br>
+            <label><input type="checkbox" class="mr-2">Night</label>
+        </div>
+    </div>
+
+    <!-- 🚌 Right Panel - Bus Listings -->
+    <div class="col-span-3 space-y-4">
+
+        <!-- Sorting -->
+        <div class="flex justify-between items-center bg-white p-3 rounded shadow-md">
+            <h2 class="text-xl font-semibold">Available Buses</h2>
+            <div>
+                <label class="mr-2 font-medium">Sort by:</label>
+                <select class="border px-2 py-1 rounded">
+                    <option value="price">Price</option>
+                    <option value="departure">Departure Time</option>
+                    <option value="arrival">Arrival Time</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Bus Card - Repeat this with Thymeleaf each loop -->
+         
+        <div th:each="bus : ${buses}" class="bg-white p-4 rounded shadow-md hover:shadow-lg transition-all flex justify-between items-center">
+            <a th:href="@{/bus/details/{id}(id=${bus.id})}" style="text-decoration:none; color:inherit;">
+            <div>
+                <h3 class="text-lg font-bold text-blue-800" th:text="${bus.name}">Bus Name</h3>
+                <p class="text-sm text-gray-600" th:text="'From ' + ${bus.route.sourceCity.name} + ' to ' + ${bus.route.destinationCity.name}">Route</p>
+                <p class="text-sm text-gray-500">Departure: <span th:text="${bus.departureTime}"></span> | Arrival: <span th:text="${bus.arrivalTime}"></span></p>
+                <p class="text-sm text-gray-600">Type: <span th:text="${bus.busType}">AC/Non-AC</span></p>
+            </div>
+            <div class="text-right">
+                <p class="text-lg font-semibold text-green-600" th:text="'₹' + ${bus.fare}">₹500</p>
+                <p class="text-sm text-gray-500" th:text="${bus.totalSeats} + ' Seats Left'">10 Seats Left</p>
+                <a th:href="@{/bus/details/{id}(id=${bus.id})}" class="mt-2 inline-block bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded">View Seats</a>  
+            </div>
+              </a>
+        </div>
+  
+
+    </div>
+</div>
+
+</body>
+</html>

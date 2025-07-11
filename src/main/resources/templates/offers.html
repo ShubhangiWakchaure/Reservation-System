@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>About MahaYatra</title>
+  <link href="/css/output.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- 🔷 Header -->
+ <div style="background-color: 	#F3F0FF; color: white; padding: 0rem; display: flex; justify-content: space-between; align-items: center;">
+        <div style="display: flex; align-items: center;">
+            <img src="/images/logo.png.png" alt="Logo" style="height: 80px; margin-right: 10px;">
+            <h1  class="text-4xl font-bold"><span style="color: #F97316;">Maha</span><span style="color: #1E3A8A;">Yatra</span></h1>
+        </div>
+        <div class="flex items-center gap-6">
+            <a href="/" class="flex items-center gap-1  text-gray-800 hover:text-blue-600 font-medium ">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"class="w-5 h-5 fill-current text-blue-600"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+          <path d="M575.8 255.5c0 18-15 32.1-32 32.1l-32 0 .7 160.2c0 2.7-.2 5.4-.5 8.1l0 16.2c0 22.1-17.9 40-40 40l-16 0c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1L416 512l-24 0c-22.1 0-40-17.9-40-40l0-24 0-64c0-17.7-14.3-32-32-32l-64 0c-17.7 0-32 14.3-32 32l0 64 0 24c0 22.1-17.9 40-40 40l-24 0-31.9 0c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2l-16 0c-22.1 0-40-17.9-40-40l0-112c0-.9 0-1.9 .1-2.8l0-69.7-32 0c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/>
+        </svg>Home
+        </a>
+    <a th:href="@{/account}" class="flex items-center gap-1 text-gray-800 hover:text-blue-600 font-medium mr-4">
+      <svg class="w-5 h-5 fill-current text-blue-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M406.5 399.6C387.4 352.9 341.5 320 288 320l-64 0c-53.5 0-99.4 32.9-118.5 79.6C69.9 362.2 48 311.7 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208c0 55.7-21.9 106.2-57.5 143.6zm-40.1 32.7C334.4 452.4 296.6 464 256 464s-78.4-11.6-110.5-31.7c7.3-36.7 39.7-64.3 78.5-64.3l64 0c38.8 0 71.2 27.6 78.5 64.3zM256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-272a40 40 0 1 1 0-80 40 40 0 1 1 0 80zm-88-40a88 88 0 1 0 176 0 88 88 0 1 0 -176 0z"/>
+      </svg>
+      Account
+    </a>
+  </div>
+</div>
+<!---Offers-->
+<section class="px-6 py-8 bg-white">
+  <h2 class="text-4xl font-extrabold  text-center mb-6">Special Offers</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <!-- Offer 1: Women -->
+    <div class="bg-pink-100 p-4 rounded-lg shadow h-60 transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl ">
+      <span class="text-sm font-semibold text-pink-700 bg-white px-2 py-1 rounded">Bus</span>
+      <h3 class="text-lg font-bold mt-4">Half Ticket for Women</h3>
+      <p class=" text-pink-700 font-semibold mt-6">Use Code: <span class="bg-white px-2 py-1 rounded">WOMEN50</span></p>
+    </div>
+
+    <!-- Offer 2: Senior Citizens -->
+    <div class="bg-yellow-100 p-4 rounded-lg  h-60  transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+      <span class="text-sm font-semibold text-yellow-800 bg-white px-2 py-1 rounded">Train</span>
+       <span class="text-sm font-semibold text-yellow-800 bg-white px-2 py-1 rounded">Bus</span>
+      <h3 class="text-lg font-bold mt-4">50% Off for Age 60–80</h3>
+      <p class="text-sm text-gray-600 mt-4">Valid ID required at boarding</p>
+      <p class="mt-6 text-yellow-800 font-semibold ">Use Code: <span class="bg-white px-2 py-1 rounded">ELDER50</span></p>
+    </div>
+
+    <!-- Offer 3: 100% Refund -->
+    <div class="bg-green-100 p-4 rounded-lg  h-60  transition-all duration-500 ease-in-out transform hover:scale-105 hover:shadow-2xl">
+      <span class="text-sm font-semibold text-green-800 bg-white px-2 py-1 rounded">All</span>
+      <h3 class="text-lg font-bold mt-4">Free Cancellation</h3>
+      <p class="text-sm text-gray-600 mt-4">Get full refund on cancelation</p>
+      <p class=" text-green-800 font-semibold mt-6">Valid till 31 Jul</p>
+    </div>
+  </div>
+</section>

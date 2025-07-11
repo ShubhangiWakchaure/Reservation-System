@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Payment</title>
+</head>
+<body>
+    <h1>Payment Details</h1>
+
+    <div th:if="${booking != null}">
+        <p><strong>Travel Name:</strong> <span th:text="${booking.travelName}">XYZ</span></p>
+        <p><strong>Mode:</strong> <span th:text="${booking.mode}">BUS</span></p>
+        <p><strong>Travel Date:</strong> <span th:text="${booking.travelDate}">2025-07-01</span></p>
+        <p><strong>Seats Booked:</strong> <span th:text="${booking.seatCount}">2</span></p>
+        <p><strong>Total Fare:</strong> ₹<span th:text="${booking.totalFare}">500.00</span></p>
+
+        <form action="/confirm-payment" method="post">
+            <button type="submit">Confirm Payment</button>
+        </form>
+    </div>
+
+    <div th:if="${booking == null}">
+        <p style="color: red;">Booking data not available. Please try again.</p>
+    </div>
+</body>
+</html>
