@@ -37,7 +37,14 @@
         <label class="block mb-1 font-semibold">Train Name:</label>
         <input type="text" name="name" required class="border p-2 rounded w-full" />
       </div>
-
+      <div class="col-span-2">
+        <label class="block mb-1 font-semibold">Train Type:</label>
+        <select name="trainType" required class="border p-2 rounded w-full">
+        <option value="AC">AC</option>
+        <option value="Non-AC">Non-AC</option>
+        <option value="Sleeper">Sleeper</option>
+        </select>
+      </div>
       <div class="col-span-2">
         <label class="block mb-1 font-semibold">Route:</label>
         <select name="routeId" required class="border p-2 rounded w-full">

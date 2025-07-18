@@ -230,7 +230,7 @@
 
 <div class="header">
     <h1 th:text="${train.route.sourceCity.name + ' ➝ ' + train.route.destinationCity.name}">Route</h1>
-    <h2 th:text="${train.name}">Bus Info</h2>
+    <h2 th:text="${train.name}">Train  Info</h2>
      <span class="close-btn" onclick="closePage()">✖</span>
 </div>
 
@@ -246,7 +246,7 @@
     </div>
 
     <div class="deck">
-    <div th:each="i : ${#numbers.sequence(1, bus.totalSeats)}"
+    <div th:each="i : ${#numbers.sequence(1, train.totalSeats)}"
          th:id="'seat-' + ${i}"
          th:text="${i}"
          th:class="'seat ' + (${bookedSeats != null and bookedSeats.contains(i.toString()) ? 'booked' : ''})"
@@ -262,7 +262,7 @@
         </div>
 
         <form action="/book-seat" method="post" class="button-container">
-            <input type="hidden" name="trainId" th:value="${train.id}" />
+            <input type="hidden" name="busId" th:value="${train.id}" />
             <input type="hidden" name="routeId" th:value="${train.route.id}" />
             <input type="hidden" name="seats" id="seatInput" />
             <button type="submit" onclick="document.getElementById('seatInput').value = selectedSeats.join(',')">
@@ -273,7 +273,7 @@
 
     <!-- Right: Bus Info -->
     <div class="right">
-        <h2 th:text="${train.name}">Bus Name</h2>
+        <h2 th:text="${train.name}">Train Name</h2>
         <p>Total Seats: <span th:text="${train.totalSeats}"></span></p>
         <p>Available Seats: <span th:text="${train.totalSeats - (bookedSeats != null ? #lists.size(bookedSeats) : 0)}">0</span></p>
 
@@ -285,7 +285,7 @@
 
         <div class="info-section">
             <div class="info-box">
-                <strong>Why book this bus?</strong>
+                <strong>Why book this train?</strong>
                 <p>Comfortable AC Sleeper, Charging ports, Clean interiors.</p>
             </div>
 
@@ -309,7 +309,7 @@
 
 <script>
     let selectedSeats = [];
-    let seatFare = /*[[${bus.fare}]]*/ 700;
+    let seatFare = /*[[${train.fare}]]*/ 700;
 
     function toggleSeat(seatNo) {
         const seat = document.getElementById('seat-' + seatNo);

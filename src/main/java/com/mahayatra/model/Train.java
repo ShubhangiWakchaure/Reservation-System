@@ -2,6 +2,7 @@ package com.mahayatra.model;
 
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Train {
     private String name;
 
     private String trainType;
+
     @ManyToOne
     private Route route;
 
@@ -25,6 +27,9 @@ public class Train {
     private LocalTime arrivalTime;
     private Integer totalSeats;
     private Double fare;
+
+    @Column(nullable = false)
+    private Integer bookedSeats = 0; // Default 0 when train is added
 
     public Train(){}
 
