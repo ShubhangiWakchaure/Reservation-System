@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Train Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 30px auto;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .left-section {
+            flex: 1;
+            min-width: 320px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            position:relative;
+            text-align: center;
+            padding: 10px;
+            background: #e53935;
+            color: white;
+        }
+
+        .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.close-btn:hover {
+    color: #ccc;
+}
+
+
+        .deck-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .deck-header h3 {
+            margin: 0;
+        }
+        
+        .deck {
+        display: grid;
+        grid-template-columns: repeat(4, 50px); /* 4 seats per row */
+        gap: 15px;
+        justify-content: center;
+        }
+
+
+        
+
+        .seat-box {
+            width: 60px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .seat-box .seat-rect {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            border: 2px solid #4CAF50;
+            margin: auto;
+        }
+
+        .seat-box.sold .seat-rect {
+            border-color: #ccc;
+            background-color: #eee;
+            cursor: not-allowed;
+        }
+
+        .seat-box.selected .seat-rect {
+            background-color: #4CAF50;
+        }
+
+        .seat-label {
+            font-size: 12px;
+            margin-top: 4px;
+            color: #4CAF50;
+        }
+
+        .seat-box.sold .seat-label {
+            color: #999;
+        }
+
+        .summary {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+            
+        }
+
+
+       button {
+        padding: 12px 25px;
+        background-color: #e53935;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 0 auto;
+        display: inline-block;
+    }
+
+
+        button:hover {
+            background-color: #c62828;
+        }
+
+        .right {
+            flex: 2;
+            min-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .images {
+            margin-top: 30px;
+        }
+
+        .images img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .info-section {
+            margin-top: 20px;
+        }
+
+        .info-box {
+            margin-top: 10px;
+            padding: 15px;
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+
+        .rating {
+            float: right;
+            background: #ff9800;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .deck-layout {
+             display: flex;
+             flex-direction: column;
+             gap: 15px;
+             margin-top: 20px;
+        }
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.row .gap {
+    width: 30px;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    background-color: #fff;
+    border: 2px solid #4CAF50;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.seat:hover {
+    background-color: #e0f7e0;
+}
+
+.seat.selected {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.seat.booked {
+    background-color: #bbb;
+    border-color: #999;
+    cursor: not-allowed;
+}
+
+.last-row {
+    justify-content: space-between;
+}
+
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1 th:text="${train.route.sourceCity.name + ' ➝ ' + train.route.destinationCity.name}">Route</h1>
+    <h2 th:text="${train.name}">Bus Info</h2>
+     <span class="close-btn" onclick="closePage()">✖</span>
+</div>
+
+<div class="container">
+    <!-- Left: Vertical Deck Layout -->
+     <div class="left-section">
+    <div class="deck-header">
+        <h3> Deck</h3>
+        <!-- Steering wheel icon -->
+       <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none" class="driver__ind-seat-styles-module-scss-ZlXuS"><path d="M38.7222 18.521C39.9065 42.9616 2.97263 45.1572 1.278 20.7139C0.0937346 -3.7255 37.0276 -5.92111 38.7222 18.521ZM6.85361 14.9134H33.1466C29.84 2.85115 10.1587 2.85589 6.85361 14.9134ZM17.6142 33.3626C17.6854 26.7541 13.022 19.8117 5.99136 19.5594C5.87927 26.7284 11.5146 32.5365 17.6142 33.3626ZM34.0097 19.6143C26.8539 19.6963 22.5045 26.8279 22.2997 33.3742C28.4857 32.5365 34.121 26.7284 34.0097 19.6143ZM22.338 19.6081C22.3545 16.579 17.6195 16.6012 17.6622 19.6281C17.6457 22.6571 22.3808 22.6348 22.338 19.6081Z" fill="#B0B0B0">
+
+       </path></svg>
+    </div>
+
+    <div class="deck">
+    <div th:each="i : ${#numbers.sequence(1, bus.totalSeats)}"
+         th:id="'seat-' + ${i}"
+         th:text="${i}"
+         th:class="'seat ' + (${bookedSeats != null and bookedSeats.contains(i.toString()) ? 'booked' : ''})"
+         th:onclick="${bookedSeats == null or !bookedSeats.contains(i.toString())} ? 'toggleSeat(' + ${i} + ')' : null">
+    </div>
+</div>
+
+
+
+        <div class="summary">
+            Selected Seats: <span id="seatDisplay">None</span> <br/>
+            Total Fare: ₹<span id="totalFare">0</span>
+        </div>
+
+        <form action="/book-seat" method="post" class="button-container">
+            <input type="hidden" name="trainId" th:value="${train.id}" />
+            <input type="hidden" name="routeId" th:value="${train.route.id}" />
+            <input type="hidden" name="seats" id="seatInput" />
+            <button type="submit" onclick="document.getElementById('seatInput').value = selectedSeats.join(',')">
+                Book Now
+            </button>
+        </form>
+    </div>
+
+    <!-- Right: Bus Info -->
+    <div class="right">
+        <h2 th:text="${train.name}">Bus Name</h2>
+        <p>Total Seats: <span th:text="${train.totalSeats}"></span></p>
+        <p>Available Seats: <span th:text="${train.totalSeats - (bookedSeats != null ? #lists.size(bookedSeats) : 0)}">0</span></p>
+
+        <div class="images">
+            <img th:src="@{'/images/' + ${#strings.replace(train.name.toLowerCase(), ' ', '-') + '.png'}}"
+                 onerror="this.onerror=null; this.src='/images/default-train.png';"
+                 alt="Train Image"/>
+        </div>
+
+        <div class="info-section">
+            <div class="info-box">
+                <strong>Why book this bus?</strong>
+                <p>Comfortable AC Sleeper, Charging ports, Clean interiors.</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Boarding Point:</strong>
+                <p th:text="${train.route.sourceCity.name}">City</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Dropping Point:</strong>
+                <p th:text="${train.route.destinationCity.name}">City</p>
+            </div>
+
+            <div class="info-box">
+                <strong>Ratings:</strong>
+                <span class="rating">4.5★</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let selectedSeats = [];
+    let seatFare = /*[[${bus.fare}]]*/ 700;
+
+    function toggleSeat(seatNo) {
+        const seat = document.getElementById('seat-' + seatNo);
+        if (seat.classList.contains('sold')) return;
+
+        if (seat.classList.contains('selected')) {
+            seat.classList.remove('selected');
+            selectedSeats = selectedSeats.filter(s => s !== seatNo.toString());
+        } else {
+            seat.classList.add('selected');
+            selectedSeats.push(seatNo.toString());
+        }
+
+        document.getElementById('seatDisplay').innerText = selectedSeats.length > 0 ? selectedSeats.join(", ") : "None";
+        document.getElementById('totalFare').innerText = selectedSeats.length * seatFare;
+
+    }
+</script>
+<script>
+    function closePage() {
+        window.location.href = "/"; // Redirects to homepage (change if needed)
+    }
+</script>
+
+
+</body>
+</html>
