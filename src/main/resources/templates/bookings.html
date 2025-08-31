@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Trips - SkyCore Reservation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+
+<!-- NAVBAR -->
+<nav class="bg-white shadow-sm border-b border-gray-200">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+        <a href="/" class="text-xl font-bold text-blue-600">SkyCore Reservation</a>
+        <div class="flex items-center space-x-6">
+            <a href="/search" class="text-gray-600 hover:text-blue-600">Search</a>
+            <a href="/logout" class="text-red-500 hover:text-red-600 font-medium">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTAINER -->
+<div class="container mx-auto mt-8 flex gap-6 px-6">
+
+    <!-- LEFT SIDEBAR -->
+    <aside class="w-64 bg-white shadow-md rounded-lg p-6">
+        <div class="flex items-center mb-6">
+            <div class="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center text-lg font-bold">
+                <span th:text="${session.user.name.substring(0,1).toUpperCase()}">S</span>
+            </div>
+            <div class="ml-4">
+                <p class="font-semibold text-gray-800" th:text="${session.user.name}">Shubhangi</p>
+                <p class="text-gray-500 text-sm">SkyCore User</p>
+            </div>
+        </div>
+
+        <!-- NAV LINKS -->
+        <nav class="space-y-3">
+            <a href="/bookings" class="block bg-blue-100 text-blue-600 px-4 py-2 rounded-lg font-medium">
+                My Trips
+            </a>
+            <a href="/profile" class="block hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium">
+                My Profile
+            </a>
+        </nav>
+    </aside>
+
+    <!-- RIGHT CONTENT AREA -->
+    <main class="flex-1 bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">My Trips</h2>
+        <hr class="mb-6">
+
+        <!-- IF BOOKINGS AVAILABLE -->
+        <div th:if="${!#lists.isEmpty(bookings)}">
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="bg-gray-100 text-gray-700 text-left">
+                            <th class="py-3 px-4">Booking ID</th>
+                            <th class="py-3 px-4">Transport Type</th>
+                            <th class="py-3 px-4">Route</th>
+                            <th class="py-3 px-4">Date</th>
+                            <th class="py-3 px-4">Seats</th>
+                            <th class="py-3 px-4">Amount</th>
+                            <th class="py-3 px-4">Status</th>
+                            <th class="py-3 px-4">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="booking : ${bookings}" class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4" th:text="${booking.id}">B123</td>
+                            <td class="py-3 px-4" th:text="${booking.type}">Bus</td>
+                            <td class="py-3 px-4" th:text="${booking.route}">Pune → Mumbai</td>
+                            <td class="py-3 px-4" th:text="${booking.date}">2025-09-01</td>
+                            <td class="py-3 px-4" th:text="${booking.seats}">2</td>
+                            <td class="py-3 px-4 font-semibold" th:text="'₹' + ${booking.amount}">₹500</td>
+                            <td class="py-3 px-4">
+                                <span th:text="${booking.status}"
+                                      th:classappend="${booking.status == 'Confirmed'} ?
+                                      'bg-green-100 text-green-700 px-3 py-1 rounded-full' :
+                                      'bg-red-100 text-red-700 px-3 py-1 rounded-full'">
+                                    Confirmed
+                                </span>
+                            </td>
+                            <td class="py-3 px-4 space-x-2">
+                                <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-lg">View</a>
+                                <a href="#" class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg">Cancel</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- IF NO BOOKINGS -->
+        <div th:if="${#lists.isEmpty(bookings)}" class="text-center py-12">
+            <p class="text-gray-600 text-lg">No upcoming trips.</p>
+            <a href="/search"
+               class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg shadow-md">
+                Plan a Trip Now
+            </a>
+        </div>
+    </main>
+</div>
+
+</body>
+</html>
