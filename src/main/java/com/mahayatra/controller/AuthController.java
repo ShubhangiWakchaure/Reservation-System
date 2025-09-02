@@ -85,19 +85,6 @@ public class AuthController {
     model.addAttribute("success", "Registration successful. Please login.");
     return "index";
 }
-     @GetMapping("/bookings")
-    public String bookings(HttpSession session) {
-        // Check if user is logged in
-        Object user = session.getAttribute("user");
-        if (user == null) {
-            // If NOT logged in → redirect to login page
-            return "redirect:/login";
-        }
-
-        // If logged in → show bookings page
-        return "bookings";
-    }
-
     // ✅ Logout
     @GetMapping("/logout")
     public String logout(HttpSession session) {

@@ -32,6 +32,7 @@ public class UserController {
     model.addAttribute("user", user);
     return "account";
 }
+
   @GetMapping("/about")
   public String aboutPage() {
     return "about";
@@ -50,6 +51,6 @@ public class UserController {
     model.addAttribute("user", user);
     return "profile"; // returns profile.html
     }
-
+    
 
 }
